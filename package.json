@@ -1,0 +1,19 @@
+{
+  "name": "meteorfaction",
+  "version": "0.3.0",
+  "description": "Command-line tool for deploying Meteor APPs to webfaction easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brunno Vodola",
+  "license": "ISC",
+  "bin": {
+    "meteorfaction": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bvodola/meteorfaction.git"
+  }
+  "dependencies": {}
+}
