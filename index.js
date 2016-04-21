@@ -7,7 +7,7 @@ var util = require('util')
 var exec = require('child_process').exec;
 var fs = require('fs');
 var path = require('path');
-var config = require(path.join(process.cwd(),'config.json'));
+var config = require(path.join(process.cwd(),'wf_deploy.json'));
 
 // ==========================
 // Writing the new start file
