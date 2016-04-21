@@ -19,7 +19,7 @@ var config = require(path.join(process.cwd(),'wf_deploy.json'));
 // suited for the meteor app standard
 
 fs.writeFile(
-	process.cwd()+'start',
+	process.cwd()+'/start',
 	"#!/bin/sh\n"+
 	"mkdir -p /home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/run\n"+
 	"pid=$(/sbin/pidof /home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/bin/node)\n"+
@@ -79,7 +79,7 @@ exec("meteor build build --architecture os.linux.x86_64", (e,se,so) => {
 
 								// Transfer the custom start file to the remote server using scp
 								console.log("Dependencies installed. Configuring server...");
-								exec("scp start "+config.wf_username+"@"+config.wf_server+":/home/bvodola/webapps/"+config.wf_app_name+"/bin/start", (e,se,so) => {
+								exec("scp "+process.cwd()+"/start "+config.wf_username+"@"+config.wf_server+":/home/bvodola/webapps/"+config.wf_app_name+"/bin/start", (e,se,so) => {
 
 									if(!e) {
 
