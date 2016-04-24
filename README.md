@@ -1,6 +1,6 @@
 # meteorfaction
 
-Command-line tool for deploying [Meteor](http://www.meteor.com) APPs to [Webfaction](www.webfaction.com]
+Command-line tool for deploying [Meteor](http://www.meteor.com) APPs to [Webfaction](www.webfaction.com)
 
 ## Basic Configuration
 
