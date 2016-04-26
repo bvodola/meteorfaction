@@ -42,3 +42,8 @@ Some explanations about the parameters above:
 ## Deploying
 
 After you completed the steps above, run `meteorfaction` inside your App's Root Folder and wait for the deploy to complete. That's it!
+
+## Observations
+
+- Only working for Node versions that support ES6 (I wrote some parts of the code using ES6 and didn't have the chance to review it).
+- Currently not working for builds that include mobile plaftorms.
