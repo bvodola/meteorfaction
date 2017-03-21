@@ -40,3 +40,7 @@ Some explanations about the parameters above:
 ## Deploying
 
 After you completed the steps above, run `meteorfaction` inside your App's Root Folder and wait for the deploy to complete. That's it!
+
+## Gitignore
+
+Don't forget to add `wf_deploy.json` to your .gitignore file. It stores sensible data about your app.
