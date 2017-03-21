@@ -15,5 +15,7 @@
     "type": "git",
     "url": "https://github.com/bvodola/meteorfaction.git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }

@@ -4,9 +4,7 @@ Command-line tool for deploying [Meteor](http://www.meteor.com) APPs to [Webfact
 
 ## Basic Configuration
 
-*Obs: This packages assumes you use [SSH Keys](https://docs.webfaction.com/user-guide/access.html#using-ssh-keys)*
-
-If you haven't, create a new Node 0.10.43 App using [WebFaction Panel](https://my.webfaction.com/new-application) and take note of the App's PORT Number
+If you haven't, create a new Node 0.10.48 App using [WebFaction Panel](https://my.webfaction.com/new-application) and take note of the App's PORT Number
 
 In the command line, run `npm install -g meteorfaction` or `sudo npm install -g meteorfaction` if you need root access
 
