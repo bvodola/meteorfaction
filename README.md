@@ -1,6 +1,6 @@
 # meteorfaction
 
-Command-line tool for deploying [Meteor](http://www.meteor.com) APPs to [Webfaction](www.webfaction.com]
+Command-line tool for deploying [Meteor](http://www.meteor.com) APPs to [Webfaction](www.webfaction.com)
 
 ## Basic Configuration
 
@@ -44,3 +44,7 @@ After you completed the steps above, run `meteorfaction` inside your App's Root 
 ## Gitignore
 
 Don't forget to add `wf_deploy.json` to your .gitignore file. It stores sensible data about your app.
+
+## Observations
+
+- Only working for Node versions that support ES6 (I wrote some parts of the code using ES6 and didn't have the chance to review it).
