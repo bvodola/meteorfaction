@@ -66,7 +66,7 @@ console.log("Building Meteor App...");
 // 	}
 // });
 
-exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x86_64 --server "+config.wf_root_url+":"+config.wf_port, (e,se,so) => {
+exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x86_64 --server "+config.wf_root_url, (e,se,so) => {
 
 	if(!e) {
 
