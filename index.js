@@ -66,13 +66,13 @@ console.log("Building Meteor App...");
 // 	}
 // });
 
-exec("meteor build build --architecture os.linux.x86_64 --server "+config.wf_root_url+":"+config.wf_port, (e,se,so) => {
+exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x86_64 --server "+config.wf_root_url+":"+config.wf_port, (e,se,so) => {
 
 	if(!e) {
 
 		console.log("Build ok. Transfering files to remote server...");
 		// 	If there are no errors, proceed to transfering the tar.gz file generated to the WebFaction server
-		exec("scp "+process.cwd()+"/build/"+config.local_app_name+".tar.gz "+config.wf_username+"@"+config.wf_server+":/home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/build.tar.gz && rm -rf "+process.cwd()+"/build/"+config.local_app_name+".tar.gz" , (e, se, so) => {
+		exec("scp "+process.cwd()+"/../"+config.local_app_name+"_build/"+config.local_app_name+".tar.gz "+config.wf_username+"@"+config.wf_server+":/home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/build.tar.gz" , (e, se, so) => {
 			console.log(so);
 
 			if(!e) {
