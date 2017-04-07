@@ -47,7 +47,7 @@ fs.writeFile(
 
 // First, let's build our Local Meteor APP, using the meteor build command
 // More info at http://docs.meteor.com/#/full/meteorbuild
-console.log("Deploy started:");
+console.log("Deploy started foda-se:");
 console.log("Building Meteor App...");
 
 // var args = {};
@@ -66,13 +66,13 @@ console.log("Building Meteor App...");
 // 	}
 // });
 
-exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x86_64 --server "+config.wf_root_url, (e,se,so) => {
+exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x86_64 --server "+config.wf_root_url, {maxBuffer: 1024 * 10000}, (e,se,so) => {
 
 	if(!e) {
 
-		console.log("Build ok. Transfering files to remote server...");
+		console.log("Build ok !!. Transfering files to remote server...");
 		// 	If there are no errors, proceed to transfering the tar.gz file generated to the WebFaction server
-		exec("scp "+process.cwd()+"/../"+config.local_app_name+"_build/"+config.local_app_name+".tar.gz "+config.wf_username+"@"+config.wf_server+":/home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/build.tar.gz" , (e, se, so) => {
+		exec("scp "+process.cwd()+"/../"+config.local_app_name+"_build/"+config.local_app_name+".tar.gz "+config.wf_username+"@"+config.wf_server+":/home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/build.tar.gz", {maxBuffer: 1024 * 10000}, (e, se, so) => {
 			console.log(so);
 
 			if(!e) {
@@ -85,26 +85,26 @@ exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x8
 				// changes the current bundle to the old_bundle folder and extracts
 				// the files from the build.tar.gz file that was transfered.
 				console.log("Transfering ok. Extracting files...");
-				exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+" && rm -rf bundle && tar -zxf build.tar.gz && rm build.tar.gz\"", (e,se,so) => {
+				exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+" && rm -rf bundle && tar -zxf build.tar.gz && rm build.tar.gz\"", {maxBuffer: 1024 * 10000},(e,se,so) => {
 
 					if(!e) {
 
 						// Runs npm install for the built node app and removes the start file from the bin folder
-						console.log("Files extracted. Installing app dependencies...");
-						exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+"/bundle/programs/server && npm install && cd ../../../bin && rm start\"", (e,se,so) => {
+						console.log("Files extracted. Installing app dependencies... --silent");
+						exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+"/bundle/programs/server && npm install --silent && cd ../../../bin && rm start\"", {maxBuffer: 1024 * 10000},(e,se,so) => {
 
 							if(!e) {
 
 								// Transfer the custom start file to the remote server using scp
 								console.log("Dependencies installed. Configuring server...");
-								exec("scp "+process.cwd()+"/start "+config.wf_username+"@"+config.wf_server+":/home/bvodola/webapps/"+config.wf_app_name+"/bin/start", (e,se,so) => {
+								exec("scp "+process.cwd()+"/start "+config.wf_username+"@"+config.wf_server+":/home/bvodola/webapps/"+config.wf_app_name+"/bin/start", {maxBuffer: 1024 * 10000}, (e,se,so) => {
 
 									if(!e) {
 
 										// Defines enviroment variables needed for the Meteor APP to work correctly (ROOT_URL, MONGO_URL and PORT)
 										// and then restarts server using the ./stop and ./start commands from the bin folder
 										console.log("Server configured. Defining environent variables and restarting server...");
-										exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+" && export MONGO_URL="+config.mongo_url+" && export ROOT_URL="+config.wf_root_url+" && export PORT="+config.wf_port+" && export MAIL_URL="+config.mail_url+" && cd bin && ./stop && chmod u+x start && ./start \"", (e,se,so) => {
+										exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+" && export MONGO_URL="+config.mongo_url+" && export ROOT_URL="+config.wf_root_url+" && export PORT="+config.wf_port+" && export MAIL_URL="+config.mail_url+" && cd bin && ./stop && chmod u+x start && ./start \"", {maxBuffer: 1024 * 10000}, (e,se,so) => {
 											if(!e) {
 
 												console.log("Deploy process ended.");
