@@ -47,7 +47,7 @@ fs.writeFile(
 
 // First, let's build our Local Meteor APP, using the meteor build command
 // More info at http://docs.meteor.com/#/full/meteorbuild
-console.log("Deploy started foda-se:");
+console.log("Deploy started:");
 console.log("Building Meteor App...");
 
 // var args = {};
@@ -90,14 +90,14 @@ exec("meteor build ../"+config.local_app_name+"_build --architecture os.linux.x8
 					if(!e) {
 
 						// Runs npm install for the built node app and removes the start file from the bin folder
-						console.log("Files extracted. Installing app dependencies... --silent");
+						console.log("Files extracted. Installing app dependencies...");
 						exec("ssh "+config.wf_username+"@"+config.wf_server+" \"cd ~/webapps/"+config.wf_app_name+"/bundle/programs/server && npm install --silent && cd ../../../bin && rm start\"", {maxBuffer: 1024 * 10000},(e,se,so) => {
 
 							if(!e) {
 
 								// Transfer the custom start file to the remote server using scp
 								console.log("Dependencies installed. Configuring server...");
-								exec("scp "+process.cwd()+"/start "+config.wf_username+"@"+config.wf_server+":/home/bvodola/webapps/"+config.wf_app_name+"/bin/start", {maxBuffer: 1024 * 10000}, (e,se,so) => {
+								exec("scp "+process.cwd()+"/start "+config.wf_username+"@"+config.wf_server+":/home/"+config.wf_username+"/webapps/"+config.wf_app_name+"/bin/start", {maxBuffer: 1024 * 10000}, (e,se,so) => {
 
 									if(!e) {
 
